@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Form</title>
+</head>
+<body>
+
+<form th:action="@{/products/save}" th:object="${product}" method="post" enctype="multipart/form-data">
+    <label>Name:</label>
+    <input type="hidden" th:field="*{id}" />
+    <input type="text" th:field="*{name}" required/>
+
+    <label>Image:</label>
+    <input type="file" id="imageFile" name="imageFile" accept="image/jpeg, image/png" required/>
+    <img th:if="${product.imagePath}" th:src="@{'/images/' + ${product.imagePath}}" alt="Product Image" />
+
+
+    <button type="submit">Save</button>
+</form>
+
+</body>
+</html>
